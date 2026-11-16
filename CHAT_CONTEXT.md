@@ -43,4 +43,4 @@ These 125 runs are stored in `traffic_control`. Adaptive policies clearly beat F
 - Inspect the current code before describing it; do not present planned work as done.
 - Do not claim improvements without repeated-seed runs.
 - Never put the DB password in docs or commits (it lives in the git-ignored `.env`).
-- Old docs/figures under `outputs/figures`, `outputs/reports`, `data/results` came from the previous version.
+- Legacy charts under `outputs/figures` came from the previous version and have been removed. Generated reports/results are ignored and not committed.

@@ -303,11 +303,8 @@ How to read it:
 
 - **Old code backup:** `D:\codes\PBL5_backup_before_simplify_2026-11-14`. It holds the full Phase-III version with the experiments runner, tests, old schema and migrations.
 - **Old database:** `adaptive_traffic` is untouched (about 900 runs).
-- **Old output folders:** `outputs/figures/`, `outputs/reports/` and `data/results/` come from the previous version. They were left in place, so delete them if not needed.
-- **Git:** nothing has been committed. Git refuses to run in this folder because it is owned by a different Windows user. Fix that with:
-  ```powershell
-  git config --global --add safe.directory "D:/codes/PBL 5th sem"
-  ```
+- **Old output folders:** the legacy `outputs/figures/` charts and summary from the previous schema have been removed. `outputs/reports/` and `data/results/` retain only `.gitkeep` placeholders in the repository; generated files in those folders are ignored.
+- **Git:** the project is on the `main` branch. The local working-folder ownership warning applied to an earlier checkout; it does not affect the GitHub repository.
 - **Report wording:** the Phase-III PDF mentions regression tests, which the simplified project no longer contains. It also mentions the old 4-scheduler / 3-scenario setup. Adjust the wording if needed.
 
 **Known limits:**

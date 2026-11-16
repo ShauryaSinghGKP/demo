@@ -6,6 +6,7 @@ __pycache__/
 data/raw/*
 data/results/*
 outputs/reports/*
+outputs/figures/
 !data/raw/.gitkeep
 !data/results/.gitkeep
 !outputs/reports/.gitkeep
