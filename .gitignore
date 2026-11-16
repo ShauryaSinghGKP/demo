@@ -3,11 +3,4 @@ venv/
 .venv/
 __pycache__/
 *.py[cod]
-data/raw/*
-data/results/*
-outputs/reports/*
-outputs/figures/
-!data/raw/.gitkeep
-!data/results/.gitkeep
-!outputs/reports/.gitkeep
-outputs/tripinfo/
+outputs/

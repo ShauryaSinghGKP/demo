@@ -93,6 +93,8 @@ Each line is one red light: the green moves from East to West for 30 s. `votes` 
 - **`outputs/compare_<scenario>_seed<seed>.png`** after `--scheduler all`: one panel per metric (waiting time, queue, max queue, vehicles completed, phase switches, ambulance delay).
 - Redraw any chart from MySQL: `python -m src.charts --run 12` or `python -m src.charts --compare peak --seed 42`.
 
+Generated charts and SUMO trip-info files stay in the local `outputs/` folder and are excluded from Git. Project reports, presentations, and research attachments are maintained separately from this source repository.
+
 ## Project files
 
 ```text
