@@ -1,0 +1,109 @@
+﻿<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1080" viewBox="0 0 1800 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Adaptive Traffic Signal Control System Architecture</title>
+  <desc id="desc">Landscape architecture diagram showing SUMO, TraCI, Python traffic monitoring and scheduling, MySQL persistence, safety checked signal control, and the feedback loop to SUMO.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M1,1 L11,6 L1,11 Z" fill="#334155"/></marker>
+    <marker id="arrowBlue" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M1,1 L11,6 L1,11 Z" fill="#2563eb"/></marker>
+    <marker id="arrowTeal" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto" markerUnits="strokeWidth"><path d="M1,1 L11,6 L1,11 Z" fill="#0f766e"/></marker>
+    <filter id="shadow" x="-15%" y="-15%" width="130%" height="140%"><feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.10"/></filter>
+    <style>
+      text { font-family: Inter, "Segoe UI", Arial, sans-serif; fill: #172033; }
+      .title { font-size: 34px; font-weight: 750; letter-spacing: .2px; }
+      .subtitle { font-size: 16px; fill: #526176; }
+      .card { stroke-width: 2; rx: 18; filter: url(#shadow); }
+      .head { font-size: 20px; font-weight: 700; }
+      .body { font-size: 16px; fill: #334155; }
+      .small { font-size: 14px; fill: #536277; }
+      .label { font-size: 14px; font-weight: 650; fill: #334155; }
+      .section { font-size: 15px; font-weight: 700; letter-spacing: 1.2px; fill: #64748b; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1080" fill="#f7f9fc"/>
+  <rect x="24" y="24" width="1752" height="1032" rx="24" fill="#ffffff" stroke="#dce3ec" stroke-width="2"/>
+  <text x="900" y="78" text-anchor="middle" class="title">Adaptive Traffic Signal Control System</text>
+  <text x="900" y="108" text-anchor="middle" class="subtitle">Simulation, live state collection, scheduling, safe actuation, and SQL-backed evaluation</text>
+  <text x="64" y="166" class="section">REAL-TIME CONTROL LOOP</text>
+
+  <!-- Main process cards -->
+  <g>
+    <rect x="60" y="205" width="230" height="230" class="card" fill="#eaf5e8" stroke="#73a86f"/>
+    <circle cx="90" cy="242" r="15" fill="#287d3c"/><text x="90" y="248" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">1</text>
+    <text x="115" y="249" class="head">SUMO</text>
+    <text x="82" y="288" class="body"><tspan x="82" dy="0">Traffic simulation</tspan><tspan x="82" dy="27">• Network and approaches</tspan><tspan x="82" dy="25">• Routes and vehicles</tspan><tspan x="82" dy="25">• Traffic light phases</tspan></text>
+
+    <rect x="330" y="205" width="230" height="230" class="card" fill="#e9f2ff" stroke="#7aa5e8"/>
+    <circle cx="360" cy="242" r="15" fill="#2563eb"/><text x="360" y="248" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">2</text>
+    <text x="385" y="249" class="head">TraCI Interface</text>
+    <text x="352" y="288" class="body"><tspan x="352" dy="0">Python ↔ SUMO link</tspan><tspan x="352" dy="27">• Reads simulation state</tspan><tspan x="352" dy="25">• Applies signal phases</tspan><tspan x="352" dy="25">• Advances simulation</tspan></text>
+
+    <rect x="600" y="205" width="260" height="230" class="card" fill="#eef5ff" stroke="#91aee0"/>
+    <circle cx="630" cy="242" r="15" fill="#2563eb"/><text x="630" y="248" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">3</text>
+    <text x="655" y="249" class="head">Python Main + Monitor</text>
+    <text x="622" y="288" class="body"><tspan x="622" dy="0">Runs the simulation loop</tspan><tspan x="622" dy="27">• Counts vehicles by approach</tspan><tspan x="622" dy="25">• Measures queues and waits</tspan><tspan x="622" dy="25">• Records vehicle classes</tspan></text>
+
+    <rect x="900" y="205" width="245" height="230" class="card" fill="#fff7e6" stroke="#e5b95e"/>
+    <circle cx="930" cy="242" r="15" fill="#c47b08"/><text x="930" y="248" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">4</text>
+    <text x="955" y="249" class="head">MySQL State</text>
+    <text x="922" y="270" class="small">adaptive_traffic · latest snapshots</text>
+    <text x="922" y="288" class="body"><tspan x="922" dy="0">Stores live observations</tspan><tspan x="922" dy="27">• Traffic snapshots</tspan><tspan x="922" dy="25">• Per-approach queues</tspan><tspan x="922" dy="25">• Vehicle-type counts</tspan></text>
+
+    <rect x="1185" y="205" width="250" height="230" class="card" fill="#f2edff" stroke="#a792df"/>
+    <circle cx="1215" cy="242" r="15" fill="#7046b8"/><text x="1215" y="248" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">5</text>
+    <text x="1240" y="249" class="head">Python Scheduler</text>
+    <text x="1207" y="288" class="body"><tspan x="1207" dy="0">Reads latest SQL state</tspan><tspan x="1207" dy="27">• Fixed</tspan><tspan x="1207" dy="25">• FCFS · Round Robin (20 s)</tspan><tspan x="1207" dy="25">• Priority + Aging</tspan></text>
+
+    <rect x="1475" y="205" width="265" height="230" class="card" fill="#fff0e7" stroke="#e5a277"/>
+    <circle cx="1505" cy="242" r="15" fill="#c45d21"/><text x="1505" y="248" text-anchor="middle" font-size="17" font-weight="700" fill="#fff">6</text>
+    <text x="1530" y="249" class="head">Signal Controller</text>
+    <text x="1497" y="288" class="body"><tspan x="1497" dy="0">Checks and applies decision</tspan><tspan x="1497" dy="27">• One approach green</tspan><tspan x="1497" dy="25">• Green bounded 10–30 s</tspan><tspan x="1497" dy="25">• Yellow 3 s → all-red 1 s</tspan></text>
+  </g>
+
+  <!-- Forward arrows -->
+  <g fill="none" stroke="#334155" stroke-width="3" marker-end="url(#arrow)">
+    <path d="M290 310 H323"/><path d="M560 310 H593"/><path d="M860 310 H893"/>
+    <path d="M1145 310 H1178"/><path d="M1435 310 H1468"/>
+  </g>
+  <g class="label" text-anchor="middle">
+    <text x="307" y="190">state</text><text x="577" y="190">observations</text>
+    <text x="877" y="190">snapshots</text><text x="1162" y="190">latest state</text>
+    <text x="1452" y="190">approach + green</text>
+  </g>
+
+  <!-- Actuation feedback loop -->
+  <path d="M1607 435 V520 H445 V447" fill="none" stroke="#2563eb" stroke-width="4" marker-end="url(#arrowBlue)"/>
+  <rect x="782" y="500" width="495" height="38" rx="19" fill="#edf4ff" stroke="#b8cdf2"/>
+  <text x="1029" y="525" text-anchor="middle" class="label" fill="#1d4ed8">Validated signal command returns through TraCI → SUMO</text>
+  <path d="M330 385 H305 V455 H175 V447" fill="none" stroke="#0f766e" stroke-width="3" marker-end="url(#arrowTeal)"/>
+  <rect x="64" y="458" width="222" height="34" rx="17" fill="#e8f7f3" stroke="#a6d9cc"/>
+  <text x="175" y="481" text-anchor="middle" class="label" fill="#0f766e">phase / timing command</text>
+
+  <!-- Storage and reporting layer -->
+  <text x="64" y="594" class="section">PERSISTENCE AND EVALUATION</text>
+  <rect x="600" y="625" width="535" height="250" class="card" fill="#fff8e9" stroke="#dfbd72"/>
+  <text x="630" y="670" class="head">MySQL Database · adaptive_traffic</text>
+  <text x="630" y="710" class="body"><tspan x="630" dy="0">• Run configuration and status</tspan><tspan x="630" dy="29">• Traffic snapshots and vehicle-type counts</tspan><tspan x="630" dy="29">• Scheduling decisions and signal events</tspan><tspan x="630" dy="29">• Final performance results</tspan></text>
+
+  <rect x="1225" y="625" width="515" height="250" class="card" fill="#eaf6fb" stroke="#78b7cb"/>
+  <text x="1255" y="670" class="head">Metrics and Run Output</text>
+  <text x="1255" y="710" class="body"><tspan x="1255" dy="0">• Average waiting time and queue length</tspan><tspan x="1255" dy="29">• Maximum queue and throughput</tspan><tspan x="1255" dy="29">• Phase switches and duration</tspan><tspan x="1255" dy="29">Calculated at run end; results saved to SQL</tspan></text>
+
+  <!-- Logging / reporting links -->
+  <g fill="none" stroke="#b7791f" stroke-width="2.5" stroke-dasharray="8 7" marker-end="url(#arrow)">
+    <path d="M730 435 V570 H760 V613"/>
+    <path d="M1310 435 V565 H1080 V613"/>
+    <path d="M1607 435 V555 H1100 V613"/>
+  </g>
+  <g class="small" text-anchor="middle">
+    <text x="735" y="568">snapshot writes</text><text x="1190" y="556">decision / event logs</text>
+  </g>
+  <path d="M1225 800 H1145" fill="none" stroke="#0f766e" stroke-width="3" marker-end="url(#arrowTeal)"/>
+  <text x="1185" y="760" text-anchor="middle" class="small">write final results</text>
+
+  <rect x="60" y="910" width="1680" height="94" rx="16" fill="#f2f5f9" stroke="#d7e0ea"/>
+  <text x="90" y="937" class="label">Important:</text>
+  <text x="180" y="937" class="body">The scheduler is Python; MySQL stores state and decisions but does not choose the phase.</text>
+  <text x="90" y="963" class="small">Both MySQL blocks represent the same adaptive_traffic database. The lower block lists its persisted data.</text>
+  <text x="90" y="987" class="small">Emergency-vehicle priority and hybrid scheduling are not shown as implemented features.</text>
+</svg>
+

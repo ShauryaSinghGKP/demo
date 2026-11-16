@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Phase 3 overlay: ambulances added on top of any scenario with the main.py emergency option
+     vClass="emergency" without a bluelight device: ambulances obey the signal, so any priority
+     comes from the controller's preemption logic. Times are fixed for reproducible comparisons;
+     the last pair arrives almost together on conflicting approaches to exercise conflict handling. -->
+<routes>
+    <vType id="ambulance" vClass="emergency" guiShape="emergency" color="1,0,0"
+           length="6.5" accel="2.6" decel="4.5" maxSpeed="16.67" />
+    <route id="amb_north_south" edges="north_in south_out" />
+    <route id="amb_south_north" edges="south_in north_out" />
+    <route id="amb_east_west" edges="east_in west_out" />
+    <route id="amb_west_east" edges="west_in east_out" />
+    <vehicle id="ambulance_1_west" type="ambulance" route="amb_west_east" depart="40" departSpeed="max" />
+    <vehicle id="ambulance_2_south" type="ambulance" route="amb_south_north" depart="95" departSpeed="max" />
+    <vehicle id="ambulance_3_east" type="ambulance" route="amb_east_west" depart="150" departSpeed="max" />
+    <vehicle id="ambulance_4_north" type="ambulance" route="amb_north_south" depart="205" departSpeed="max" />
+    <vehicle id="ambulance_5_west" type="ambulance" route="amb_west_east" depart="260" departSpeed="max" />
+    <vehicle id="ambulance_6_east" type="ambulance" route="amb_east_west" depart="300" departSpeed="max" />
+    <vehicle id="ambulance_7_south" type="ambulance" route="amb_south_north" depart="302" departSpeed="max" />
+</routes>
